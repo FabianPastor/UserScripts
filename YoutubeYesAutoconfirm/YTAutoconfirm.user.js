@@ -69,8 +69,7 @@
       display = popup.style.getPropertyValue("display");
       d("5.2.8 Property Display");
       d(display);
-      popup = null;
-      return display=="none"?popup:false;
+      return display=="none"?true:null;
     }catch(e){
       d("5.2.9 Some exception happened");
       return false;
@@ -82,13 +81,12 @@
     d("5.1 Entered PressYes");
 
     d("5.2 If display is empty then ckick the button yes");
-    var popup = isPopup();
-    if(popup === false){
-      d("5.3 There is no Yes Button displayed :(");
-    }else{
+    if(isPopup()){
       popup.getElementById("text").click();
-
+      popup = null;
       d("5.4 Button Yes clicked");
+    }else{
+      d("5.3 There is no Yes Button displayed :(");
     }
   }
   
