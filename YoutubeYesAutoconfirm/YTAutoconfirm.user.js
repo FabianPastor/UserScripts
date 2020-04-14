@@ -3,7 +3,7 @@
 // @description  Autoconfirms the playing blocking
 // @author       FabianPastor
 // @namespace    http://fabi.servehttp.com/
-// @version      0.4
+// @version      0.6
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/YoutubeYesAutoconfirm/YTAutoconfirm.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/YoutubeYesAutoconfirm/YTAutoconfirm.user.js
 // @match        https://www.youtube.com/watch?v=*
@@ -11,11 +11,11 @@
 // ==/UserScript==
 
 (function() {
-  var version = "00005";
+  var version = "00006";
   var timeout = 15*1000; //Miliseconds
   var debug = false;
   var popuptagnames=[
-    "paper-toast",
+    //"paper-toast",
     "paper-dialog"
   ];
   var popup = null;
@@ -69,7 +69,7 @@
       display = popup.style.getPropertyValue("display");
       d("5.2.8 Property Display");
       d(display);
-      return display=="none"?true:null;
+      return display=="none"?false:true;
     }catch(e){
       d("5.2.9 Some exception happened");
       return false;
@@ -82,12 +82,22 @@
 
     d("5.2 If display is empty then ckick the button yes");
     if(isPopup()){
-      popup.getElementById("text").click();
-      popup = null;
-      d("5.4 Button Yes clicked");
+      d("5.4 Clicking buttons");
+      try{
+        var buttons = popup.getElementsByTagName("paper-button");
+        d(buttons);
+        for(var i=0;i<buttons.length;i++){
+            d("5.4.1 Button clicked !!");
+            buttons.item(i).getElementsByTagName("yt-formatted-string").item(0).click();
+        }
+      }catch(e2){
+          d("5.4.2 Unknown exception");
+          d(e2);
+      }
     }else{
       d("5.3 There is no Yes Button displayed :(");
     }
+    popup = null;
   }
   
   d("2 starting setinterval if not exists");
