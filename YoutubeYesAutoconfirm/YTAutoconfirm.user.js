@@ -3,7 +3,7 @@
 // @description  Autoconfirms the playing blocking
 // @author       FabianPastor
 // @namespace    http://fabi.servehttp.com/
-// @version      0.3
+// @version      0.4
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/YoutubeYesAutoconfirm/YTAutoconfirm.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/YoutubeYesAutoconfirm/YTAutoconfirm.user.js
 // @match        https://www.youtube.com/watch?v=*
@@ -11,7 +11,7 @@
 // ==/UserScript==
 
 (function() {
-  var version = "00004";
+  var version = "00005";
   var timeout = 15*1000; //Miliseconds
   var debug = false;
   var popuptagnames=[
@@ -69,7 +69,7 @@
       display = popup.style.getPropertyValue("display");
       d("5.2.8 Property Display");
       d(display);
-
+      popup = null;
       return display=="none"?popup:false;
     }catch(e){
       d("5.2.9 Some exception happened");
