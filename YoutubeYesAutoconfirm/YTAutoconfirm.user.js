@@ -3,7 +3,7 @@
 // @description  Autoconfirms the playing blocking
 // @author       FabianPastor
 // @namespace    http://fabi.servehttp.com/
-// @version      0.6
+// @version      0.7
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/YoutubeYesAutoconfirm/YTAutoconfirm.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/YoutubeYesAutoconfirm/YTAutoconfirm.user.js
 // @match        https://www.youtube.com/watch?v=*
@@ -11,7 +11,7 @@
 // ==/UserScript==
 
 (function() {
-  var version = "00006";
+  var version = "007";
   var timeout = 15*1000; //Miliseconds
   var debug = false;
   var popuptagnames=[
@@ -87,7 +87,7 @@
         var buttons = popup.getElementsByTagName("paper-button");
         d(buttons);
         for(var i=0;i<buttons.length;i++){
-            d("5.4.1 Button clicked !!");
+            d("5.4.1 Button Yes clicked !!",true);
             buttons.item(i).getElementsByTagName("yt-formatted-string").item(0).click();
         }
       }catch(e2){
