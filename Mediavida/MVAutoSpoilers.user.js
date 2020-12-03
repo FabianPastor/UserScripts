@@ -13,7 +13,7 @@
 (function() {
   var version = "007";
   var timeout = 2 * 1000;
-  var debug = true;
+  var debug = false;
   var d = function(text, force = false) {
     if (debug || force) {
 
