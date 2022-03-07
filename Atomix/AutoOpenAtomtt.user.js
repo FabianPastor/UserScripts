@@ -1,18 +1,18 @@
 // ==UserScript==
 // @name         Atomtt Auto Open Torrent
 // @namespace    http://fabi.servehttp.com/
-// @version      0.4
+// @version      0.5
 // @description  Auto Aprieta el boton de descarga del torrent.
 // @author       FabianPastor
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenAtomtt.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenAtomtt.user.js
-// @match        https://atomtt.com/t_download/*/*/
-// @match        http://atomtt.com/t_download/*/*/
+// @match        https://atomtt.com/t_download/*/*/*
+// @match        http://atomtt.com/t_download/*/*/*
 // @run-at       document-end
 // ==/UserScript==
 
 (function() {
-  var version = "004";
+  var version = "005";
   var timeout = 0.5 * 1000;
   var debug = false;
   var d = function(text, force = false) {
