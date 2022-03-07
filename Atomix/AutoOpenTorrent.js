@@ -1,18 +1,17 @@
 // ==UserScript==
-// @name         Atomix Links Changer
+// @name         Atomix Auto Open Torrent
 // @namespace    http://fabi.servehttp.com/
-// @version      0.5
-// @description  Cambiador de enlaces en AtomixHQ
+// @version      0.1
+// @description  Auto Aprieta el boton de descarga del torrent.
 // @author       FabianPastor
-// @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/LinksChanger.user.js
-// @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/LinksChanger.user.js
-// @match        https://atomixhq.link/*
-// @match        http://atomixhq.link/*
+// @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenTorrent.user.js
+// @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenTorrent.user.js
+// @match        https://atomixhq.link/descargar/torrent/*
 // @run-at       document-end
 // ==/UserScript==
 
 (function() {
-  var version = "005";
+  var version = "001";
   var timeout = 0.5 * 1000;
   var debug = false;
   var d = function(text, force = false) {
@@ -26,15 +25,11 @@
     }
   }
 
-  function changeLinks(){
-    d("Started the links changer");
-    var links = document.getElementsByTagName("a");
-    for(var i=0; i<links.length;i++){
-        var href = links.item(i).href;
-        var m = href.match(/\/descargar\/torrent\//);
-        if(m === null || m === "undefined"){
-           links.item(i).href = href.replace(/\/descargar\//,'/descargar/torrent/');
-        }
+  function autoOpenTorrent(){
+    d("Started the Link Opener");
+    if (typeof openTorrent === "function") { 
+      d("Opening Torrent");
+      openTorrent();
     }
   }
 
@@ -54,7 +49,7 @@
   // }
   //Launching the script with a delay.
   d("Starting out the spoilers timeout to launch in " + timeout + "ms");
-  unsafeWindow.setTimeout(changeLinks, timeout);
+  unsafeWindow.setTimeout(autoOpenTorrent, timeout);
 
     // Your code here...
 })();
