@@ -1,20 +1,25 @@
 // ==UserScript==
 // @name         Atomtt Auto Open Torrent
 // @namespace    http://fabi.servehttp.com/
-// @version      0.5
+// @version      0.24
 // @description  Auto Aprieta el boton de descarga del torrent.
 // @author       FabianPastor
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenAtomtt.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenAtomtt.user.js
-// @match        https://atomtt.com/t_download/*/*/*
-// @match        http://atomtt.com/t_download/*/*/*
+// @match        https://atomtt.com/*
+// @match        http://atomtt.com/*
 // @run-at       document-end
+// @grant unsafeWindow
+// @grant window.close
 // ==/UserScript==
 
 (function() {
-  var version = "005";
-  var timeout = 0.5 * 1000;
+  var version = "024";
+  var timeout = 1 * 1000;
   var debug = false;
+  var queryPath = document.URL.replace(/https?:\/\/[^/]+/, "")
+  var count = 0;
+  
   var d = function(text, force = false) {
     if (debug || force) {
 
@@ -26,32 +31,61 @@
     }
   }
 
-  function autoOpenTorrent(){
+  function decodeLink(link){
+    return link;
+  }
+
+  function getEncodedLinkFromScripts(){
+    return true;
+  }
+
+  function getEncodedLinkFromElement(nodeElement){
+    if(nodeElement.nodeName.toLowerCase() === "a"){
+      return nodeElement.href;
+    }
+    return true;
+  }
+
+  function detectLink(){
+    var nodeElement;
+
+    if(queryPath.match("/index.php")){
+      if(nodeElement = document.getElementById("bx").firstElementChild.firstElementChild ){
+        return getEncodedLinkFromElement(nodeElement);
+      }
+      return getEncodedLinkFromScripts();
+    }
+    return false;
+  }
+
+  function AutoOpenLink(){
     d("Started the Link Opener");
-    var btn = document.getElementById("btntor");
-    if( !(btn === null || btn === "undefined")  ){
-      d("Opening Torrent");
-      btn.click();
+    var link_encoded ;
+    if(link_encoded = detectLink()){
+      if (typeof link_encoded === "string") {
+        d("Link found!!");
+        var link = decodeLink(link_encoded);
+        d(link);
+        window.open(link);
+
+        unsafeWindow.setTimeout(function(){
+          window.close();
+        }, 1500);
+
+      }else{
+        if(count < 10){
+          d("Linkd doesnt found. Checking again.");
+          unsafeWindow.setTimeout(AutoOpenLink, timeout);
+          count++;
+        }else{
+          d("Stoped Trying to find it.");
+        }
+      }
     }
   }
 
-  // //Jquery hasClass selector
-  // //Source: https://github.com/jquery/jquery/blob/e743cbd28553267f955f71ea7248377915613fd9/test/data/jquery-1.9.1.js#L2262
-  // function hasClass(node, selector) {
-  //   var className = " " + selector + " ",
-  //     node_index = 0,
-  //     node_length = node.length;
-  //   for (; node_index < node_length; node_index++) {
-  //     if (node[node_index].nodeType === 1 && (" " + node[node_index].className + " ").replace(/[\n\t\r]/g, " ").indexOf(className) >= 0) {
-  //       return true;
-  //     }
-  //   }
-
-  //   return false;
-  // }
   //Launching the script with a delay.
   d("Starting out the spoilers timeout to launch in " + timeout + "ms");
-  unsafeWindow.setTimeout(autoOpenTorrent, timeout);
+  unsafeWindow.setTimeout(AutoOpenLink, timeout);
 
-    // Your code here...
 })();

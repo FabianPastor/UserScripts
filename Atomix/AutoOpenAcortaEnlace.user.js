@@ -1,23 +1,23 @@
 // ==UserScript==
-// @name         Atomix Auto Open Torrent
+// @name         AcortaEnlace - AutoOpen Links
 // @namespace    http://fabi.servehttp.com/
-// @version      0.8
-// @description  Auto Aprieta el boton de descarga del torrent.
+// @version      0.2
+// @description  Auto Aprieta el boton verde en la web de acortaenlace.
 // @author       FabianPastor
-// @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenTorrent.user.js
-// @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenTorrent.user.js
-// @match        https://atomixhq.link/descargar/torrent/*
-// @match        http://atomixhq.link/descargar/torrent/*
-// @match        https://atomixhq.club/descargar/torrent/*
-// @match        http://atomixhq.club/descargar/torrent/*
+// @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenAcortaEnlace.user.js
+// @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Atomix/AutoOpenAcortaEnlace.user.js
+// @match        https://acorta-enlace.com/*
+// @match        http://acorta-enlace.com/*
 // @run-at       document-end
 // @grant unsafeWindow
 // @grant window.close
+// @grant GM_cookie
+// @grant GM.cookie
 // ==/UserScript==
 
 (function() {
-  var version = "008";
-  var timeout = 0.5 * 1000;
+  var version = "002";
+  var timeout = 1 * 1000;
   var count = 0;
   var debug = false;
   var d = function(text, force = false) {
@@ -30,13 +30,19 @@
       }
     }
   }
-
+  
+  GM.cookie.set({ name: 'af0mwxhq52', value: 'Wn275', expirationDate: (new Date()).setYear(2050) })
+  
   function autoOpenTorrent(){
     d("Started the Link Opener");
-    if (typeof openTorrent === "function") { 
+    if (typeof DYykkzwP === "string") {
       d("Opening Torrent");
-      openTorrent();
-      window.close();
+      
+      unsafeWindow.open(DYykkzwP);
+      unsafeWindow.setTimeout(function(){
+       window.close();
+      }, 1500);
+
     }else{
       if(count < 4){
         unsafeWindow.setTimeout(autoOpenTorrent, timeout);
