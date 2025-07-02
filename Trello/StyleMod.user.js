@@ -3,54 +3,43 @@
 // @description  Small Trello CSS mod to change a few minor Style Properties.
 // @author       FabianPastor
 // @namespace    http://fabi.servehttp.com/
-// @version      0.11
+// @version      0.12
+// @grant        GM_addStyle
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Trello/StyleMod.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Trello/StyleMod.user.js
 // @icon         https://www.google.com/s2/favicons?sz=64&domain=trello.com
 // @match        https://trello.com/*
 // @run-at       document-end
 // ==/UserScript==
+
+
+function applyStyle(){
+    GM_addStyle(`
+          ._UvaHK6fukmTc4.sfCjcMKVjES0Hl.t_6PqKcL7DA8Qa{
+            width: 100vw !important;
+          }
+
+          .u4mjknssOvTvF8 .OftUJMY9A1bsMS{
+            width:5% !important;
+          }
+
+          .u4mjknssOvTvF8 .kli7aIGeyXSbYG{
+            width: 90% !important;
+            min-width: inherit !important;
+            max-width: inherit !important;
+          }
+
+          .q5xxNU7ASO2fsR, .q5xxNU7ASO2fsR .N4ktAjtOpkJvy0{
+            width: 95% !important;
+          }
+
+          .q5xxNU7ASO2fsR{
+            flex: 1 1 !important;
+          }
+        `);
+}
+
 (function() {
     'use strict';
-
-    function applyStyles(){
-        const cardSize    = Math.round(window.innerWidth*0.8);
-        const sideColSize = 200;
-        const mainColSize = cardSize - sideColSize - 50;
-        let card = null;
-        //debugger;
-        card    = document.querySelector("#layer-manager-card-back>div>div>div");
-        if(card == null){
-          card    = document.querySelector("div.window.editor-sticky-toolbar");
-        }
-
-        if(card !== null){
-            //const mainCol = document.querySelector("div.window-main-col");
-            //const sideCol = document.querySelector("div.window-sidebar");
-
-            let test_div = document.querySelector("#layer-manager-card-back>div:nth-child(1)>div:nth-child(1)>div>div>div>div:nth-child(3)>div:nth-child(1)");
-            if( test_div != null){
-                const mainCol = document.querySelector("#layer-manager-card-back>div:nth-child(1)>div:nth-child(1)>div>div>div>div:nth-child(3)>div:nth-child(1)");
-                const sideCol = document.querySelector("#layer-manager-card-back>div:nth-child(1)>div:nth-child(1)>div>div>div>div:nth-child(3)>div:nth-child(2)");
-            }else{
-                const mainCol = document.querySelector("#layer-manager-card-back>div:nth-child(1)>div:nth-child(1)>div>div>div>div:nth-child(2)>div:nth-child(1)");
-                const sideCol = document.querySelector("#layer-manager-card-back>div:nth-child(1)>div:nth-child(1)>div>div>div>div:nth-child(2)>div:nth-child(2)");
-            }
-
-            try{
-
-                card.style.width    = cardSize+"px";
-                card.querySelectorAll(":scope>div>div>div")[1].style.gridTemplateColumns = "[main] "+mainColSize+"px [sidebar] minmax(0, 1fr)"
-                mainCol.style.width = mainColSize+"px";
-                sideCol.style.width = sideColSize+"px";
-                sideCol.style.position = "absolute";
-                sideCol.style.left = (mainColSize + 30)+"px"
-            }catch(e){
-                //alert('Hubo un error al tratar de agrandar la tarjeta.');
-            }
-        }
-
-    }
-
-    let applyStylesInterval = setInterval(applyStyles,1000);
+    setTimeout(applyStyle,1*1000);
 })();
