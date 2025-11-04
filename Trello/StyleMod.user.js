@@ -3,7 +3,7 @@
 // @description  Small Trello CSS mod to change a few minor Style Properties.
 // @author       FabianPastor
 // @namespace    http://fabi.servehttp.com/
-// @version      0.14
+// @version      0.15
 // @grant        GM_addStyle
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Trello/StyleMod.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Trello/StyleMod.user.js
