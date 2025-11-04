@@ -28,7 +28,8 @@ main.wc06Ow6i2YO3aG
 }
 
 /* MAIN > CONTENT  */
-main.wc06Ow6i2YO3aG .t6cNjdAqr4XLQt
+main.wc06Ow6i2YO3aG .t6cNjdAqr4XLQt,
+.BvYMUSHQ3VZhSV
 {
   width: 100% !important;
   min-width: inherit !important;
