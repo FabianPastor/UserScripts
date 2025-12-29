@@ -3,7 +3,7 @@
 // @description  Small Trello CSS mod to change a few minor Style Properties.
 // @author       FabianPastor
 // @namespace    http://fabi.servehttp.com/
-// @version      0.15
+// @version      0.16
 // @grant        GM_addStyle
 // @updateURL    https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Trello/StyleMod.user.js
 // @downloadURL  https://raw.githubusercontent.com/FabianPastor/UserScripts/master/Trello/StyleMod.user.js
@@ -16,20 +16,22 @@
 function applyStyle(){
     GM_addStyle(`
 /* Aria-labelledby card-back-name */
-.BvYMUSHQ3VZhSV.n2JiYx2TrpRj9Z.udR7hhdNKnONkc
+#layer-manager-card-back>div>div,
+#layer-manager-card-back>div>div>div[data-focus-lock='cardback']>div[aria-labelledby='card-back-name']
 {
   width: 100vw !important;
 }
 
 /* MAIN */
-main.wc06Ow6i2YO3aG
+#layer-manager-card-back>div>div>div[data-focus-lock='cardback']>div[aria-labelledby='card-back-name'] main
 {
   width: 50% !important;
+  flex-basis: inherit !important;
 }
 
 /* MAIN > CONTENT  */
-main.wc06Ow6i2YO3aG .t6cNjdAqr4XLQt,
-.BvYMUSHQ3VZhSV
+#layer-manager-card-back>div>div>div[data-focus-lock='cardback']>div[aria-labelledby='card-back-name'] main>div,
+#layer-manager-card-back>div>div>div[data-focus-lock='cardback']>div[aria-labelledby='card-back-name'] main>section>hggroup
 {
   width: 100% !important;
   min-width: inherit !important;
@@ -38,13 +40,13 @@ main.wc06Ow6i2YO3aG .t6cNjdAqr4XLQt,
 
 
 /* ASIDE */
-aside.vUqpA6EbZkEvq6
+#layer-manager-card-back>div>div>div[data-focus-lock='cardback']>div[aria-labelledby='card-back-name'] aside
 {
   width: 50% !important;
 }
 
 /* ASIDE > CONTENT */
-aside.vUqpA6EbZkEvq6 > div
+#layer-manager-card-back>div>div>div[data-focus-lock='cardback']>div[aria-labelledby='card-back-name'] aside > div
 {
    width: 100% !important;
 }
